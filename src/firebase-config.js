@@ -1,14 +1,23 @@
 import {initializeApp} from 'firebase/app';
 import {getAuth} from 'firebase/auth';
+import {
+  REACT_APP_API_KEY,
+  REACT_APP_AUTH_DOMAIN,
+  REACT_APP_PROJECT_ID,
+  REACT_APP_STORAGE_BUCKET,
+  REACT_APP_MESSAGING_SENDER_ID,
+  REACT_APP_APP_ID,
+  REACT_APP_MEASUREMENT_ID,
+} from '@env';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyB4GWKxagNngetG3mKRQkwtI4bf2fnCvIs',
-  authDomain: 'nowfeel-3292e.firebaseapp.com',
-  projectId: 'nowfeel-3292e',
-  storageBucket: 'nowfeel-3292e.appspot.com',
-  messagingSenderId: '249982474625',
-  appId: '1:249982474625:web:bf59c7653b5fc941087080',
-  measurementId: 'G-4RW4JZDC7Y',
+  apiKey: REACT_APP_API_KEY,
+  authDomain: REACT_APP_AUTH_DOMAIN,
+  projectId: REACT_APP_PROJECT_ID,
+  storageBucket: REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: REACT_APP_MESSAGING_SENDER_ID,
+  appId: REACT_APP_APP_ID,
+  measurementId: REACT_APP_MEASUREMENT_ID,
 };
 
 const app = initializeApp(firebaseConfig);
