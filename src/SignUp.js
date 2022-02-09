@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   Text,
@@ -27,10 +27,7 @@ const SignUp = () => {
 
   const register = async () => {
     try {
-      console.log('email', email);
-      console.log('password', password);
-      const user = await createUserWithEmailAndPassword(auth, email, password);
-      console.log(user);
+      await createUserWithEmailAndPassword(auth, email, password);
     } catch (error) {
       console.log(error);
     }
@@ -38,14 +35,7 @@ const SignUp = () => {
 
   const login = async () => {
     try {
-      console.log('email', loginEmail);
-      console.log('password', loginPassword);
-      const user = await signInWithEmailAndPassword(
-        auth,
-        loginEmail,
-        loginPassword,
-      );
-      console.log(user);
+      await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
     } catch (error) {
       console.log(error);
     }
