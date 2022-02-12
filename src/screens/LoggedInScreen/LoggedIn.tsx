@@ -5,6 +5,14 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../App';
 import {User as FirebaseUser} from 'firebase/auth';
+import {
+  getDatabase,
+  ref as firebaseRef,
+  child,
+  set,
+  get,
+} from 'firebase/database';
+
 type Props = NativeStackScreenProps<RootStackParamList, 'LoggedIn'>;
 
 const LoggedIn: React.FC<Props> = ({navigation}) => {
@@ -21,6 +29,28 @@ const LoggedIn: React.FC<Props> = ({navigation}) => {
     navigation.navigate('SignUp');
   };
 
+  const saveUserData = (userId: number, email: string) => {
+    const db = getDatabase();
+    set(firebaseRef(db, 'users/' + user?.uid), {
+      email: email,
+    });
+  };
+
+  useEffect(() => {
+    const dbRef = firebaseRef(getDatabase());
+    get(child(dbRef, 'users/' + user?.uid))
+      .then(snapshot => {
+        if (snapshot) {
+          console.log(snapshot.val());
+        } else {
+          console.log('no data');
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  });
+
   return (
     <View style={styles.container}>
       <View style={styles.mainContainer}>
@@ -31,6 +61,11 @@ const LoggedIn: React.FC<Props> = ({navigation}) => {
           <View style={styles.titleWrap}>
             <Text style={styles.title}>{user?.email}</Text>
           </View>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => saveUserData(1, user?.email)}>
+            <Text style={styles.buttonText}>データ登録</Text>
+          </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={logout}>
             <Text style={styles.buttonText}>サインアウト</Text>
           </TouchableOpacity>

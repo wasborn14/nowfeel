@@ -1,8 +1,15 @@
 import React from 'react';
+// import {
+//   createContext,
+//   createContext as createContextSelector,
+//   useContext,
+//   useContextSelector,
+// } from 'use-context-selector';
+// import {useImmerReducer} from 'use-immer';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import SignUp from './screens/SignUpScreen/SignUp';
 import {NavigationContainer} from '@react-navigation/native';
-import LoggedIn from './screens/LoginScreen/LoggedIn';
+import LoggedIn from './screens/LoggedInScreen/LoggedIn';
 
 export type RootStackParamList = {
   SignUp: undefined;
@@ -10,6 +17,8 @@ export type RootStackParamList = {
 };
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
+
+// const AppContext = c;
 
 const App = () => {
   return (
