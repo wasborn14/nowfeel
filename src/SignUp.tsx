@@ -11,8 +11,12 @@ import {
   signInWithEmailAndPassword,
 } from 'firebase/auth';
 import {auth} from './firebase-config';
+import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {RootStackParamList} from './App';
 
-const SignUp = ({navigation}) => {
+type Props = NativeStackScreenProps<RootStackParamList, 'SignUp'>;
+
+const SignUp: React.FC<Props> = ({navigation}) => {
   const [email, setEmail] = useState('example1@example.com');
   const [password, setPassword] = useState('password');
   const [loginEmail, setLoginEmail] = useState('example1@example.com');
