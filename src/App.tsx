@@ -1,8 +1,8 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import SignUp from './SignUp';
+import SignUp from './screens/SignUpScreen/SignUp';
 import {NavigationContainer} from '@react-navigation/native';
-import LoggedIn from './LoggedIn';
+import LoggedIn from './screens/LoginScreen/LoggedIn';
 
 export type RootStackParamList = {
   SignUp: undefined;

@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {onAuthStateChanged, signOut} from 'firebase/auth';
-import {auth} from './firebase-config';
+import {auth} from '../../../firebase-config';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RootStackParamList} from './App';
+import {RootStackParamList} from '../../App';
 import {User as FirebaseUser} from 'firebase/auth';
 type Props = NativeStackScreenProps<RootStackParamList, 'LoggedIn'>;
 

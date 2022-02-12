@@ -10,9 +10,9 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from 'firebase/auth';
-import {auth} from './firebase-config';
+import {auth} from '../../../firebase-config';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RootStackParamList} from './App';
+import {RootStackParamList} from '../../App';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'SignUp'>;
 
