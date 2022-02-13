@@ -42,12 +42,11 @@ export function useAppDispatch(): Dispatch<Action> {
 
 const App = () => {
   const [state, dispatch] = useImmerReducer(appReducer, initialState);
-  const navigationRef = useRef<NavigationContainerRef<{}>>(null);
 
   return (
     <AppContext.Provider value={state}>
       <AppDispatchContext.Provider value={dispatch}>
-        <NavigationContainer ref={navigationRef}>
+        <NavigationContainer>
           <RootStack.Navigator initialRouteName="Login">
             <RootStack.Screen name="Login" component={Login} />
             <RootStack.Screen name="Home" component={Home} />

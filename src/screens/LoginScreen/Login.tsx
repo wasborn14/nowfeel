@@ -8,14 +8,16 @@ import {
 } from 'react-native';
 import {onAuthStateChanged, signInWithEmailAndPassword} from 'firebase/auth';
 import {firebaseAuth} from '../../../firebase-config';
-import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList, useAppDispatch} from '../../App';
 import {setUser} from '../../appReducer';
+import {useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
+type Props = StackNavigationProp<RootStackParamList, 'Login'>;
 
-const Login: React.FC<Props> = ({navigation}) => {
+const Login: React.FC<Props> = () => {
   const dispatch = useAppDispatch();
+  const nav = useNavigation<Props>();
   const [email, setEmail] = useState('example@example.com');
   const [password, setPassword] = useState('password');
 
@@ -38,10 +40,9 @@ const Login: React.FC<Props> = ({navigation}) => {
     try {
       await signInWithEmailAndPassword(firebaseAuth, email, password);
       await onAuthStateChanged(firebaseAuth, currentUser => {
-        // console.log(currentUser);
         currentUser && dispatch(setUser(currentUser));
       });
-      navigation.navigate('Home');
+      nav.navigate('Home');
     } catch (error) {
       console.log(error);
     }
@@ -78,7 +79,7 @@ const Login: React.FC<Props> = ({navigation}) => {
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
-              navigation.navigate('Register');
+              nav.navigate('Register');
             }}>
             <Text style={styles.buttonText}>新規登録</Text>
           </TouchableOpacity>

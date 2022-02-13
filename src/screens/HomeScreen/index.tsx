@@ -29,13 +29,13 @@ export function useHomeDispatch(): Dispatch<Action> {
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
-const HomeContainer: React.FC<Props> = ({navigation}) => {
+const HomeContainer: React.FC<Props> = () => {
   const [state, dispatch] = useImmerReducer(homeReducer, initialState);
 
   return (
     <HomeContext.Provider value={state}>
       <HomeDispatchContext.Provider value={dispatch}>
-        <Home navigation={navigation} />
+        <Home />
       </HomeDispatchContext.Provider>
     </HomeContext.Provider>
   );

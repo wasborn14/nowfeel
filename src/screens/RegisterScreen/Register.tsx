@@ -11,16 +11,18 @@ import {
   onAuthStateChanged,
 } from 'firebase/auth';
 import {firebaseAuth} from '../../../firebase-config';
-import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList, useAppDispatch} from '../../App';
 import {setUser} from '../../appReducer';
+import {useNavigation} from '@react-navigation/native';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
+type Props = StackNavigationProp<RootStackParamList>;
 
-const Register: React.FC<Props> = ({navigation}) => {
+const Register: React.FC = () => {
   const dispatch = useAppDispatch();
   const [email, setEmail] = useState('example1@example.com');
   const [password, setPassword] = useState('password');
+  const nav = useNavigation<Props>();
 
   const register = async () => {
     try {
@@ -29,7 +31,7 @@ const Register: React.FC<Props> = ({navigation}) => {
         console.log(currentUser);
         currentUser && dispatch(setUser(currentUser));
       });
-      navigation.navigate('Home');
+      nav.navigate('Home');
     } catch (error) {
       console.log(error);
     }
@@ -66,7 +68,7 @@ const Register: React.FC<Props> = ({navigation}) => {
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
-              navigation.navigate('Login');
+              nav.navigate('Login');
             }}>
             <Text style={styles.buttonText}>戻る</Text>
           </TouchableOpacity>

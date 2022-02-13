@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList, useAppState} from '../../App';
 import {
   getDatabase,
@@ -19,18 +18,21 @@ import {
   push,
 } from 'firebase/database';
 import {useHomeState} from './index';
+import {useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
+type Props = StackNavigationProp<RootStackParamList>;
 
-const Home: React.FC<Props> = ({navigation}) => {
+const Home: React.FC = () => {
   const user = useAppState(state => state.user);
   const taskList = useHomeState(state => state.taskList);
   const [taskTitle, setTaskTitle] = useState('');
   const [taskComment, setTaskComment] = useState('');
+  const nav = useNavigation<Props>();
 
   const logout = async () => {
     await signOut(firebaseAuth);
-    navigation.navigate('Login');
+    nav.navigate('Login');
   };
 
   const postTask = async (title: string, comment: string) => {
