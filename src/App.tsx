@@ -1,4 +1,4 @@
-import React, {Dispatch, useRef} from 'react';
+import React, {Dispatch} from 'react';
 import {
   createContext,
   createContext as createContextSelector,
@@ -8,10 +8,7 @@ import {
 import {useImmerReducer} from 'use-immer';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Login from './screens/LoginScreen/Login';
-import {
-  NavigationContainer,
-  NavigationContainerRef,
-} from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import Home from './screens/HomeScreen/Home';
 import Register from './screens/RegisterScreen/Register';
 import {Action, appReducer, AppState, initialState} from './appReducer';
