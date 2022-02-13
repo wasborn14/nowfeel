@@ -1,11 +1,16 @@
 import {User as FirebaseUser} from 'firebase/auth';
 
+// export interface UserInfo {
+//   uid: string;
+//   email: string;
+// }
+
 export interface AppState {
-  user: FirebaseUser | undefined;
+  user: FirebaseUser | null;
 }
 
 export const initialState: AppState = {
-  user: undefined,
+  user: null,
 };
 
 export const setUser = (payload: FirebaseUser) => ({
@@ -13,11 +18,12 @@ export const setUser = (payload: FirebaseUser) => ({
   payload,
 });
 
-export const resetUser = () => ({
+export const resetUser = (payload: FirebaseUser) => ({
   type: 'resetUser',
+  payload,
 });
 
-export type Action = ReturnType<typeof setUser>;
+export type Action = ReturnType<typeof setUser> | ReturnType<typeof resetUser>;
 
 export const appReducer = (state: AppState, action: Action) => {
   switch (action.type) {
@@ -25,7 +31,7 @@ export const appReducer = (state: AppState, action: Action) => {
       state.user = action.payload;
       break;
     case 'resetUser':
-      state.user = undefined;
+      state.user = null;
       break;
   }
 };
